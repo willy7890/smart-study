@@ -7,33 +7,19 @@
     <style>
         :root { --neon: #00f2ff; --gold: #ffd700; --dark: #0a0b10; --card: #161b22; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; margin: 0; text-align: center; }
-        
         header { background: linear-gradient(135deg, #000428, #004e92); padding: 30px; border-bottom: 3px solid var(--neon); }
         .container { max-width: 1000px; margin: auto; padding: 20px; min-height: 70vh; }
-        
-        /* Grid Buttons */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .choice-card { 
-            background: var(--card); border: 1px solid #333; padding: 35px 20px; 
-            border-radius: 20px; cursor: pointer; transition: 0.3s; font-weight: bold;
-        }
+        .choice-card { background: var(--card); border: 1px solid #333; padding: 35px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-weight: bold; }
         .choice-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: 0 0 15px rgba(0,242,255,0.2); }
-        
         .hidden { display: none; }
         .back-btn { background: #333; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; float: left; margin-bottom: 20px; }
-        
-        /* AI Box & Camera */
         .ai-box { background: #1e293b; padding: 25px; border-radius: 20px; margin-top: 50px; border: 2px dashed var(--neon); }
         .ai-input-wrapper { display: flex; align-items: center; gap: 10px; background: white; padding: 5px; border-radius: 10px; margin-top: 15px; }
-        .ai-input-wrapper input { flex: 1; border: none; padding: 10px; outline: none; }
+        .ai-input-wrapper input { flex: 1; border: none; padding: 10px; outline: none; color: black; }
         .cam-label { cursor: pointer; font-size: 24px; padding: 5px; }
-        
-        /* Buttons */
         .btn-view { display: block; background: var(--neon); color: #000; padding: 12px; margin: 10px 0; border-radius: 10px; text-decoration: none; font-weight: bold; }
         .btn-pay { background: var(--gold); color: #000; padding: 15px; border-radius: 10px; border: none; font-weight: bold; width: 100%; cursor: pointer; margin-top: 20px; }
-        
-        #payModal { background: #1a1a1a; padding: 20px; border-radius: 15px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; border: 2px solid var(--gold); display: none; width: 90%; max-width: 400px; }
-        #preview-img { max-width: 100%; margin-top: 10px; border-radius: 10px; display: none; }
     </style>
 </head>
 <body>
@@ -44,31 +30,30 @@
 </header>
 
 <div class="container">
-    <!-- 1. HOME: SCREEN DISPLAY -->
-    <div id="home-screen">
-        <h2>choose a particular field</h2>
+    <!-- 1. HOME SCREEN -->
+    <div id="home-screen" class="screen-content">
+        <h2>Choose a particular field</h2>
         <div class="grid">
-            <div class="choice-card" onclick="showScreen('sch-notes')"><br>school Notes all levels</div>
-            <div class="choice-card" onclick="showScreen('Entatain-screen')"><br>Entertainment and Life Teaching Books</div>
+            <div class="choice-card" onclick="showScreen('sch-notes')"><br>Notes for all levels🎓 </div>
+            <div class="choice-card" onclick="showScreen('Entatain-screen')"><br>Entertainment🎭 and Life Teaching Videos🎬</div>
         </div>
     </div>
+
     <!-- 2. SCHOOL NOTES SUB-MENU -->
-    <div id="sch-notes" class="hidden">
+    <div id="sch-notes" class="screen-content hidden">
         <button class="back-btn" onclick="goBack()">← Back</button>
         <h2 style="clear:both">School Notes All Level</h2>
-        <h3>Choose a level of study</h3>
         <div class="grid">
-            <div class="choice-card" onclick="showScreen('p-level')">Primary Level</div>
-            <div class="choice-card" onclick="showScreen('o-level')">Ordinary Level</div>
-            <div class="choice-card" onclick="showScreen('a-level')">Advanced Level</div>
+            <div class="choice-card" onclick="showScreen('p-level')">Primary Level📝 <br><small>Not Available - Coming Soon</small></div>
+            <div class="choice-card" onclick="showScreen('o-level')">Ordinary Level🏫 <br><small>Not Available - Coming Soon</small></div>
+            <div class="choice-card" onclick="showScreen('a-level')">Advanced Level 📚 </div>
         </div>
-    </div> 
+    </div>
 
     <!-- 3. A-LEVEL MENU -->
-    <div id="a-level" class="hidden">
+    <div id="a-level" class="screen-content hidden">
         <button class="back-btn" onclick="goBack()">← Back</button>
         <h2 style="clear:both">Advanced Level Textbooks</h2>
-        <h3>Select the Subject</h3>
         <div class="grid">
             <div class="choice-card" onclick="showScreen('chem-screen')">🧪<br>Chemistry</div>
             <div class="choice-card" onclick="showScreen('phys-screen')">🔭<br>Physics</div>
@@ -76,156 +61,99 @@
             <div class="choice-card" onclick="showScreen('math-screen')">📐<br>Advanced Math</div>
         </div>
     </div>
-    <!--4. HAPA NDIPO DIV YA A-LEVEL INAPOISHIA -->
 
-    <!-- 5. CHEMISTRY SUB-MENU -->
-    <div id="chem-screen" class="hidden">
+    <!-- 4. CHEMISTRY (LINK ZAKO ZIPO HAPA) -->
+    <div id="chem-screen" class="screen-content hidden">
         <button class="back-btn" onclick="goBack()">← Back</button>
         <h2 style="clear:both">Chemistry Textbooks</h2>
         <div class="grid">
             <div class="choice-card">General chemistry 5&6<br><a href="https://drive.google.com/file/d/1R4SkwrhZNJdCZTETV1324Z0DjfpL0e4u/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
             <div class="choice-card">Physical chemisty 5&6<br><a href="https://drive.google.com/file/d/14D3RejSDzzV2je5pkvazjJBhDqdehl9X/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
-            <div class="choice-card">Organic chemistry 5&6<br><a href="https://drive.google.com/file/d/19gExGK5UVjeSxEUVY2p1I7xrJdtUHJXd/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
+            <div class="choice-card">Organic chemistry 5&6<br><a href="https://drive.google.com/file/d/1d-NG0g-lKyNPPXNv1tebifLqsZscuFlx/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
             <div class="choice-card">Inorganic chemistry 5&6<br><a href="https://drive.google.com/file/d/1iuTgDBsDlxLyascl8oewBrAi3icXpyQB/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
         </div>
-        <button class="btn-pay" onclick="openPay('Chemistry Solved Papers (300)')">Get Solved Papers (TSh 300)</button>
+        <button class="btn-pay" onclick="openPay('Chemistry Solved Papers')">Get Solved Papers (TSh 300)</button>
     </div>
 
-    <!-- 6. PHYSICS / BIO / MATH (CLASS SELECTION) -->
-    <div id="phys-screen" class="hidden">
+    <!-- 5. PHYSICS (LINK ZAKO ZIPO HAPA) -->
+    <div id="phys-screen" class="screen-content hidden">
         <button class="back-btn" onclick="goBack()">← Back</button>
         <h2 style="clear:both">Physics</h2>
         <div class="grid">
-            <div class="choice-card">Physics form 5<br><a href="https://drive.google.com/file/d/1r0-WnJk3_M_Up5axZ6LUp6QIl4WGMTDv/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
+            <div class="choice-card">Physics form 5<br><a href="https://drive.google.com/file/d/187oa6Iu3H22YaMZFO3ZfnV5FfZRXF5n9/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
             <div class="choice-card">Physics form 6<br><a href="https://drive.google.com/file/d/1opCjcrRYrP-5mThC_QDovmr6FwqkAmSv/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
         </div>
-        <button class="btn-pay" onclick="openPay('Physics Solved (300)')">Solved Papers (TSh 300)</button>
     </div>
 
-    <div id="bio-screen" class="hidden">
-        <button class="back-btn"onclick="goBack()">← Back</button>
+    <!-- 6. BIOLOGY (LINK ZAKO ZIPO HAPA) -->
+    <div id="bio-screen" class="screen-content hidden">
+        <button class="back-btn" onclick="goBack()">← Back</button>
         <h2 style="clear:both">Biology</h2>
         <div class="grid">
             <div class="choice-card">Biology form 5<br><a href="https://drive.google.com/file/d/1b-LtX87vNVPPg_1OYs2Pc5BsV78Oy2h1/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
             <div class="choice-card">Biology form 6<br><a href="https://drive.google.com/file/d/1IRDNHZOKRInEpbJaOCBwkhT4JvppTRlo/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
         </div>
-        <button class="btn-pay" onclick="openPay('Biology Solved (300)')">Solved Papers (TSh 300)</button>
     </div>
 
-    <div id="math-screen" class="hidden">
+    <!-- 7. MATH (LINK ZAKO ZIPO HAPA) -->
+    <div id="math-screen" class="screen-content hidden">
         <button class="back-btn" onclick="goBack()">← Back</button>
         <h2 style="clear:both">Advanced Mathematics</h2>
         <div class="grid">
             <div class="choice-card">Advanced mathematics 5<br><a href="https://drive.google.com/file/d/1rGPeaOFiYsdpjGBCsoyUqHx-AWobmUfT/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
             <div class="choice-card">Advanced mathematics 6<br><a href="https://drive.google.com/file/d/1t6SAk82XPDQjMCJmbAr8wjwyza9haKZS/view?usp=drive_link" target="_blank" class="btn-view">READ</a></div>
         </div>
-        <button class="btn-pay" onclick="openPay('Math Solved (300)')">Solved Papers (TSh 300)</button>
     </div>
 
-    <!--7. AI SOLVER WITH CAMERA -->
+    <!-- 8. ENTERTAINMENT -->
+    <div id="Entatain-screen" class="screen-content hidden">
+        <button class="back-btn" onclick="goBack()">← Back</button>
+        <h2 style="clear:both">Entertainment & Life Skills</h2>
+        <div class="grid">
+            <div class="choice-card">🧠<br>Nidhamu ya Mafanikio<br><small>Not Available - Coming Soon</small></div>
+            <div class="choice-card">💰<br>Elimu ya Pesa<br><small>Not Available - Coming Soon</small></div>
+            <div class="choice-card" onclick="window.open('https://youtube.com', '_blank')">🔥<br>Video za Hamasa<br><a href="https://youtube.com/playlist?list=PLidzVKpnyuZrOEq5vvjym2PyOpuzJ6-K1&si=B0j2r1g1V3ytVtgc" target="_blank" class="btn-view">WATCH</a></div>
+        </div>
+    </div>
+
+    <!-- AI BOX -->
     <div class="ai-box">
         <h3 style="color: var(--neon);">🤖 AI Smart Solver</h3>
-        <p>Andika swali au Piga picha ya swali lako:</p>
-        
+        <p>Andika swali au Piga picha:</p>
         <div class="ai-input-wrapper">
-            <input type="text" id="ai-text" placeholder="write your question here...">
-            <!-- Icon ya Camera -->
-            <label for="cam-upload" class="cam-label">📷</label>
-            <input type="file" id="cam-upload" accept="image/*" capture="environment" class="hidden" onchange="previewFile()">
+            <input type="text" placeholder="Write question here...">
+            <label class="cam-label">📷</label>
         </div>
-        
-        <img id="preview-img" alt="Question Preview">
-        <button onclick="solveAI()" style="margin-top:15px; padding:12px 30px; background:var(--neon); border:none; border-radius:10px; font-weight:bold; cursor:pointer;">SOLVE NOW</button>
-        
-        <div id="ai-res" style="margin-top:20px; color:#39ff14; font-style:italic;"></div>
+        <button class="btn-view" style="width:100%; border:none; margin-top:10px;" onclick="alert('AI is coming soon!')">SOLVE NOW</button>
     </div>
 </div>
 
-<!-- PAY MODAL -->
-<div id="payModal">
-    <h3 style="color:var(--gold)">Kamilisha Malipo</h3>
-    <p>Lipia TSh 300 kwenda:<br><b>0750394671</b> (Wilbard Magaso)</p>
-    <form action="https://formspree.io" method="POST">
-        <input type="text" name="Item" id="payItem" readonly style="background:none; color:white; text-align:center; border:none; width:100%;">
-        <input type="number" name="PayerPhone" placeholder="Namba yako ya malipo" required style="width:90%; padding:10px; margin:10px 0; border-radius:5px;">
-        <input type="text" name="TransactionID" placeholder="Namba ya muamala (SRA...)" required style="width:90%; padding:10px; margin:10px 0; border-radius:5px;">
-        <button type="submit" class="btn-pay">TUMA TAARIFA</button>
-        <button type="button" onclick="document.getElementById('payModal').style.display='none'" style="background:none; color:gray; border:none; cursor:pointer; margin-top:10px;">Ghairi</button>
-    </form>
-</div>
-
 <script>
-    function showScreen(id) {
-        document.querySelectorAll('.container > div').forEach(div => {
-            if(!div.classList.contains('ai-box')) div.classList.add('hidden');
-        });
-        document.getElementById(id).classList.remove('hidden');
-    }
-
-    function previewFile() {
-        const file = document.getElementById('cam-upload').files[0];
-        const preview = document.getElementById('preview-img');
-        const reader = new FileReader();
-        reader.onloadend = function() { preview.src = reader.result; preview.style.display = 'block'; }
-        if (file) { reader.readAsDataURL(file); }
-    }
-
-    function solveAI() {
-        const res = document.getElementById('ai-res');
-        res.innerHTML = "AI is analyzing your question and image... Please wait.";
-        setTimeout(() => { 
-            res.innerHTML = "AI Solver: In solving this question, we must use the principles of Organic Chemistry... (Success!)"; 
-        }, 3000);
-    }
-
-    function openPay(item) {
-        document.getElementById('payItem').value = item;
-        document.getElementById('payModal').style.display = 'block';
-    }
-</script>
-
-<footer>
-    <p>&copy; 2026 Smart Study | Developed by Wilbard Magaso</p>
-</footer>
-<script>
-    // 1. Hifadhi ya kurudi nyuma
-    let screenHistory = ['home-screen']; 
+    let screenHistory = ['home-screen'];
 
     function showScreen(screenId) {
-        // Tafuta screen zote (div zote zilizomo ndani ya container ambazo ni "pages")
-        const screens = document.querySelectorAll('.container > div:not(.ai-box)');
+        let target = document.getElementById(screenId);
+        if(!target) { alert("This section is Not Available - Coming Soon!"); return; }
         
-        // Ficha screen zote
-        screens.forEach(s => s.classList.add('hidden'));
-
-        // Onyesha screen uliyobonyeza
-        const target = document.getElementById(screenId);
-        if (target) {
-            target.classList.remove('hidden');
-            // Ongeza kwenye kumbukumbu kama ni screen mpya
-            if (screenHistory[screenHistory.length - 1] !== screenId) {
-                screenHistory.push(screenId);
-            }
+        document.querySelectorAll('.screen-content').forEach(s => s.classList.add('hidden'));
+        target.classList.remove('hidden');
+        if (screenHistory[screenHistory.length - 1] !== screenId) {
+            screenHistory.push(screenId);
         }
     }
 
     function goBack() {
         if (screenHistory.length > 1) {
-            screenHistory.pop(); // Ondoa screen ya sasa
-            const prevScreenId = screenHistory[screenHistory.length - 1];
-            
-            // Ficha zote na uonyeshe ya nyuma
-            const screens = document.querySelectorAll('.container > div:not(.ai-box)');
-            screens.forEach(s => s.classList.add('hidden'));
-            document.getElementById(prevScreenId).classList.remove('hidden');
+            screenHistory.pop();
+            let prev = screenHistory[screenHistory.length - 1];
+            document.querySelectorAll('.screen-content').forEach(s => s.classList.add('hidden'));
+            document.getElementById(prev).classList.remove('hidden');
         }
     }
 
-    // Function ya malipo (ili isilete error ukibonyeza)
     function openPay(item) {
-        alert("Malipo kwa ajili ya: " + item + "\nHuduma hii inakuja hivi karibuni!");
+        alert("Payment for " + item + " will be available soon!");
     }
 </script>
-
 </body>
 </html>
